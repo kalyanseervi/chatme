@@ -15,8 +15,14 @@ const accessTokenSecret = 'a1b2c3d44e5';
 const refreshTokenSecret = 'a1b2c3d44e5f6g7';
 const refreshTokens = {};
 
-mongoose.connect('mongodb+srv://kalyanseervi700:Pqk5YKb187kyfkNu@cluster0.sxw2jd1.mongodb.net/videochat?authMechanism=DEFAULT', { useNewUrlParser: true, useUnifiedTopology: true });
-
+mongoose.connect('mongodb+srv://kalyanseervi700:Pqk5YKb187kyfkNu@cluster0.sxw2jd1.mongodb.net/videochat?authMechanism=DEFAULT', 
+    { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
+        console.log("Connected to MongoDB");
+      })
+      .catch((err) => {
+        console.error("Error connecting to MongoDB:", err);
+        process.exit(1);
+      });
 const userSchema = new mongoose.Schema({
     username: { type: String, unique: true },
     password: String
